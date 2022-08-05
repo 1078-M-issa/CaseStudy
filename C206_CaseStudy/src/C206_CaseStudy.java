@@ -10,20 +10,15 @@ public class C206_CaseStudy {
 
 
 		ArrayList<Stall> Stalllist = new ArrayList<Stall>();
-		ArrayList<Menu> Stallmenu1 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu2 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu3 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu4 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu5 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu6 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu7 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu8 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu9 = new ArrayList<Menu>();
-		ArrayList<Menu> Stallmenu10 = new ArrayList<Menu>();
-
+		ArrayList<Menu> Stallmenu = new ArrayList<Menu>();
+		
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
-		Stallmenu1.add(new Menu(1,"Apple Juice", 2.00));
-		Stallmenu1.add(new Menu(1,"Orange Juice", 1.50));
+		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
+		Stallmenu.add(new Menu(1,"Apple Juice", 2.00));
+		Stallmenu.add(new Menu(1,"Orange Juice", 1.50));
+		Stallmenu.add(new Menu(2,"Fries", 3));
+		Stallmenu.add(new Menu(2,"Lamb chop", 7.50));
+
 
 
 
@@ -41,13 +36,20 @@ public class C206_CaseStudy {
 				//admin (paulo) view Stall choice
 				if (choice == 1) {
 					choice = Helper.readInt("Enter Stall to view > ");
-					if (choice == 1) {
 
-					} else if (choice == 2) {
 
-					}
-				//admin edit stall choice
-				}else if (choice == 2) {
+					for (int i = 0; i<Stallmenu.size(); i++) {
+						if(Stallmenu.get(i).getStall_id() == choice) {
+							System.out.println(Stallmenu.get(i).getfoodName());
+						}
+					} choice = Helper.readInt("Enter Stall to view > ");
+					
+					
+					
+					
+
+					//admin edit stall choice
+				} else if (choice == 2) {
 					choice = Helper.readInt("Enter which stall to edit > ");
 					for (int i = 0; i<Stalllist.size(); i++) {
 						if ((i + 1) == choice) {
@@ -58,7 +60,7 @@ public class C206_CaseStudy {
 							Stalllist.get(i).setCategory(NewCat);
 							Stalllist.get(i).setDate(OpDate);
 						}
-						
+
 					}
 				} else if (choice == 3) {
 					choice = Helper.readInt("Enter which stall to delete > ");
@@ -70,7 +72,7 @@ public class C206_CaseStudy {
 				}
 
 			}
-		//Celest & Jennifer Programme code 4 Stall operator
+			//Celest & Jennifer Programme code 4 Stall operator
 		}else if (Role == 2) {
 
 		} 
@@ -89,13 +91,13 @@ public class C206_CaseStudy {
 			System.out.println("\n");
 			Helper.line(80, "-");
 			System.out.println("What would you like to do? \n");
-			System.out.println("1 - View");
-			System.out.println("2 - Edit");
-			System.out.println("3 - Delete");
+			System.out.println("1 - View Stall");
+			System.out.println("2 - Edit Stall");
+			System.out.println("3 - Delete Stall");
 
 
 
-		//Celest & Jennifer Main Menu 4 Stall operator;
+			//Celest & Jennifer Main Menu 4 Stall operator;
 		} else if (role == 2) {
 
 			for (int i = 0; i < AL.size(); i++) {
