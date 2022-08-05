@@ -28,6 +28,14 @@ public Stall(int stall_id, String stall_name, String category) {
 	}
 
 
+/**
+ * @param stall_id2
+ */
+public Stall(int stall_id2) {
+	// TODO Auto-generated constructor stub
+}
+
+
 public int getStall_id() {
 	return stall_id;
 }
