@@ -15,20 +15,33 @@
  */
 public class Stall {
 	
-	public Stall(int stall_id, String stall_name, String category) {
+	private int stall_id;
+	private String stall_name;
+	private String category;
+	private String date;
+	
+	
+	public Stall(int stall_id, String stall_name, String category, String date) {
 		this.stall_id = stall_id;
 		this.stall_name = stall_name;
 		this.category = category;
+		this.date = date;
+		
 	}
 	
 	public Stall(int stall_id) {
 		this.stall_id = stall_id;
 	}
 	
-	private int stall_id;
-	private String stall_name;
-	private String category;
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	
 	public int getStall_id() {
 		return stall_id;
