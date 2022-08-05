@@ -40,11 +40,8 @@ public class C206_CaseStudyTest {
 		assertEquals("Test if that Camcorder arraylist size is 1?", 1, Stalllist.size());
 
 		// The item just added is as same as the first item of the list
-		assertSame("Test that Camcorder is added same as 1st item of the list?", S1, Stalllist.get(0));
-		
+		assertSame("Test that Camcorder is added same as 1st item of the list?", S1, Stalllist.get(0));		
 		
 	}
-
-
 
 }

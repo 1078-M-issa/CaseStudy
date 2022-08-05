@@ -18,21 +18,14 @@ public class Stall {
 	private int stall_id;
 	private String stall_name;
 	private String category;
-	
 
+
+	
 public Stall(int stall_id, String stall_name, String category) {
 		this.stall_id = stall_id;
 		this.stall_name = stall_name;
 		this.category = category;
 	}
-
-
-/**
- * @param stall_id2
- */
-public Stall(int stall_id2) {
-	this.stall_id = stall_id2;
-}
 
 
 public int getStall_id() {
