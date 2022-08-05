@@ -14,16 +14,20 @@
  *
  */
 public class Menu extends Stall{
-	private String foodName;
-	private double price;
 	
 	public Menu(int stall_id, String foodName, double price) {
 		super(stall_id);
 		this.foodName = foodName;
 		this.price = price;
 	}
+	private String foodName;
+	private double price;
+
+	
+	
+
 	public String toString() {
-		
+
 		String foodItem = String.format("%-10s %-30f",  foodName, price);
 		return foodItem;
 	}

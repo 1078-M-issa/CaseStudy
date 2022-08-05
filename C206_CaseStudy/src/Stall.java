@@ -15,56 +15,39 @@
  */
 public class Stall {
 	
-	private int stall_id;
-	private String stall_name;
-	private String category;
-
-
-	
-public Stall(int stall_id, String stall_name, String category) {
+	public Stall(int stall_id, String stall_name, String category) {
 		this.stall_id = stall_id;
 		this.stall_name = stall_name;
 		this.category = category;
 	}
-
-
-/**
- * @param stall_id2
- */
-public Stall(int stall_id2) {
-	// TODO Auto-generated constructor stub
-}
-
-
-public int getStall_id() {
-	return stall_id;
-}
-
-
-public void setStall_id(int stall_id) {
-	this.stall_id = stall_id;
-}
-
-
-public String getStall_name() {
-	return stall_name;
-}
-
-
-public void setStall_name(String stall_name) {
-	this.stall_name = stall_name;
-}
-
-
-public String getCategory() {
-	return category;
-}
-
-
-public void setCategory(String category) {
-	this.category = category;
-}
-
+	
+	public Stall(int stall_id) {
+		this.stall_id = stall_id;
+	}
+	
+	private int stall_id;
+	private String stall_name;
+	private String category;
+	
+	
+	public int getStall_id() {
+		return stall_id;
+	}
+	public void setStall_id(int stall_id) {
+		this.stall_id = stall_id;
+	}
+	public String getStall_name() {
+		return stall_name;
+	}
+	public void setStall_name(String stall_name) {
+		this.stall_name = stall_name;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 
 }
