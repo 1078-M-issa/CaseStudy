@@ -36,13 +36,34 @@ public class C206_CaseStudy {
 				//admin (paulo) view Stall choice
 				if (choice == 1) {
 					choice = Helper.readInt("Enter Stall to view > ");
-
-
 					for (int i = 0; i<Stallmenu.size(); i++) {
 						if(Stallmenu.get(i).getStall_id() == choice) {
 							System.out.println(Stallmenu.get(i).getfoodName());
 						}
-					} choice = Helper.readInt("Enter Stall to view > ");
+					}
+					System.out.println("\n");
+					Helper.line(80, "-");
+					System.out.println("What would you like to do? \n");
+					System.out.println("1 - Add food item to menu");
+					System.out.println("2 - View food menu item");
+					System.out.println("3 - Delete food item from menu");
+					
+					choice = Helper.readInt("Choose option > ");
+					if (choice == 1) {
+						Menu food1 = inputMenu();
+						C206_CaseStudy.addMenu(Stallmenu, food1);
+						System.out.println("Food item added");
+					} else if (choice == 2) {
+						C206_CaseStudy.viewAllMenu(Stallmenu);
+						
+					} else if (choice == 3) {
+						String name = Helper.readString("Enter Food Name > ");
+						for (int i = 0; i<Stallmenu.size(); i++) {
+							if(Stallmenu.get(i).getfoodName() == name) {
+								C206_CaseStudy.deleteFood(Stallmenu, name);	
+							}
+					} System.out.println("Food item deleted");
+					}
 					
 					
 					
@@ -73,7 +94,7 @@ public class C206_CaseStudy {
 
 			}
 			//Celest & Jennifer Programme code 4 Stall operator
-		}else if (Role == 2) {
+		} else if (Role == 2) {
 
 		} 
 
@@ -133,6 +154,39 @@ public class C206_CaseStudy {
 				System.out.println( (i + 1) + " - " +  AL.get(i).getfoodName() + " - $" + AL.get(i).getPrice());
 			}
 		}
+	}
+	//add new Menu (Paulo)
+	public static Menu inputMenu() {
+		String name = Helper.readString("Enter name of food > ");
+		double price = Helper.readDouble("Enter price of food item > ");
+		
+		Menu food = new Menu(1, name, price);
+		return food;
+	}
+	public static void addMenu(ArrayList<Menu>Stallmenu, Menu food) {
+		Stallmenu.add(food);
+	}
+	public static String getAllMenu(ArrayList<Menu> Stallmenu){
+	String output="";
+	
+	for (int i = 0; i < Stallmenu.size(); i++) {
+		output += String.format("%-10d %-30s %-10.2f\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
+	}
+	return output;
+}
+
+	// view food item menu (Paulo)
+	public static void viewAllMenu(ArrayList<Menu> Stallmenu) {
+		String output = String.format("%-10s %-30s $-10s\n", "FOOD ID", "FOOD ITEM", " FOOD PRICE");
+		output += getAllMenu(Stallmenu);
+		
+		System.out.println(output);
+	}
+	
+	// Delete food item from menu (Paulo)
+	public static void deleteFood(ArrayList<Menu> Stallmenu, String name) {
+		
+		Stallmenu.remove(name);
 	}
 
 
