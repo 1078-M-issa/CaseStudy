@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class C206_CaseStudy {
 
 	public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class C206_CaseStudy {
 
 		ArrayList<Stall> Stalllist = new ArrayList<Stall>();
 		ArrayList<Menu> Stallmenu = new ArrayList<Menu>();
-		
+
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
 		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
 		Stallmenu.add(new Menu(1,"Apple Juice", 2.00));
@@ -38,7 +39,7 @@ public class C206_CaseStudy {
 					choice = Helper.readInt("Enter Stall to view > ");
 					for (int i = 0; i<Stallmenu.size(); i++) {
 						if(Stallmenu.get(i).getStall_id() == choice) {
-							System.out.println(Stallmenu.get(i).getfoodName());
+							System.out.println(Stallmenu.get(i).getfoodName() + " - " + Stallmenu.get(i).getPrice());
 						}
 					}
 					System.out.println("\n");
@@ -47,7 +48,7 @@ public class C206_CaseStudy {
 					System.out.println("1 - Add food item to menu");
 					System.out.println("2 - View food menu item");
 					System.out.println("3 - Delete food item from menu");
-					
+
 					choice = Helper.readInt("Choose option > ");
 					if (choice == 1) {
 						Menu food1 = inputMenu();
@@ -55,22 +56,23 @@ public class C206_CaseStudy {
 						System.out.println("Food item added");
 					} else if (choice == 2) {
 						C206_CaseStudy.viewAllMenu(Stallmenu);
-						
+
 					} else if (choice == 3) {
 						String name = Helper.readString("Enter Food Name > ");
 						for (int i = 0; i<Stallmenu.size(); i++) {
 							if(Stallmenu.get(i).getfoodName() == name) {
 								C206_CaseStudy.deleteFood(Stallmenu, name);	
 							}
-					} System.out.println("Food item deleted");
-					}
-					
-					
-					
-					
+						} System.out.println("Food item deleted");
+					}	
+
+
+
+
 
 					//admin edit stall choice
 				} else if (choice == 2) {
+					C206_CaseStudy.setHeader("Edit stall");
 					choice = Helper.readInt("Enter which stall to edit > ");
 					for (int i = 0; i<Stalllist.size(); i++) {
 						if ((i + 1) == choice) {
@@ -83,13 +85,31 @@ public class C206_CaseStudy {
 						}
 
 					}
+					Helper.line(80, "-");
 				} else if (choice == 3) {
+					C206_CaseStudy.setHeader("Delete stall");
 					choice = Helper.readInt("Enter which stall to delete > ");
 					for (int i = 0; i<Stalllist.size(); i++) {
 						if ((i + 1) == choice) {
 							Stalllist.remove(Stalllist.get(i));
 						}
 					}
+					Helper.line(80, "-");
+				} else if (choice == 4) {
+					C206_CaseStudy.setHeader("Add a new stall");
+					for (int i = 0; i < 10 ; i++) {
+						if (Stalllist.size() > i) {
+							System.out.println((i + 1) + " " + Stalllist.get(i).getStall_name()); 
+						} else {
+							System.out.println((i + 1) + " Empty Stallslot"); 
+						}
+					}
+					Helper.line(80, "-");
+					int newid = Helper.readInt("Enter in stall slot > ");
+					String NewName = Helper.readString("Enter new stall name >  ");
+					String NewCat = Helper.readString("Enter new stall Cat >  ");
+					String OpDate = Helper.readString("Enter operating date >");
+					Stalllist.add(new Stall(newid,NewName, NewCat,OpDate ));
 				}
 
 			}
@@ -115,6 +135,7 @@ public class C206_CaseStudy {
 			System.out.println("1 - View Stall");
 			System.out.println("2 - Edit Stall");
 			System.out.println("3 - Delete Stall");
+			System.out.println("4 - Add Stall");
 
 
 
@@ -159,7 +180,7 @@ public class C206_CaseStudy {
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
 		double price = Helper.readDouble("Enter price of food item > ");
-		
+
 		Menu food = new Menu(1, name, price);
 		return food;
 	}
@@ -167,25 +188,25 @@ public class C206_CaseStudy {
 		Stallmenu.add(food);
 	}
 	public static String getAllMenu(ArrayList<Menu> Stallmenu){
-	String output="";
-	
-	for (int i = 0; i < Stallmenu.size(); i++) {
-		output += String.format("%-10d %-30s %-10.2f\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
+		String output="";
+
+		for (int i = 0; i < Stallmenu.size(); i++) {
+			output += String.format("%-10d %-30s %-10.2f\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
+		}
+		return output;
 	}
-	return output;
-}
 
 	// view food item menu (Paulo)
 	public static void viewAllMenu(ArrayList<Menu> Stallmenu) {
 		String output = String.format("%-10s %-30s $-10s\n", "FOOD ID", "FOOD ITEM", " FOOD PRICE");
 		output += getAllMenu(Stallmenu);
-		
+
 		System.out.println(output);
 	}
-	
+
 	// Delete food item from menu (Paulo)
 	public static void deleteFood(ArrayList<Menu> Stallmenu, String name) {
-		
+
 		Stallmenu.remove(name);
 	}
 
