@@ -58,10 +58,10 @@ public class C206_CaseStudy {
 						C206_CaseStudy.viewAllMenu(Stallmenu);
 
 					} else if (choice == 3) {
-						String name = Helper.readString("Enter Food Name > ");
+						int foodId = Helper.readInt("Enter Food id > ");
 						for (int i = 0; i<Stallmenu.size(); i++) {
-							if(Stallmenu.get(i).getfoodName() == name) {
-								C206_CaseStudy.deleteFood(Stallmenu, name);	
+							if(Stallmenu.get(i).getStall_id() == foodId) {
+								C206_CaseStudy.deleteFood(Stallmenu, foodId);	
 							}
 						} System.out.println("Food item deleted");
 					}	
@@ -205,9 +205,9 @@ public class C206_CaseStudy {
 	}
 
 	// Delete food item from menu (Paulo)
-	public static void deleteFood(ArrayList<Menu> Stallmenu, String name) {
+	public static void deleteFood(ArrayList<Menu> Stallmenu, int foodId) {
 
-		Stallmenu.remove(name);
+		Stallmenu.remove(foodId);
 	}
 
 

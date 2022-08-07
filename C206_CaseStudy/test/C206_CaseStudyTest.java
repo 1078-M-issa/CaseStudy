@@ -73,5 +73,58 @@ public class C206_CaseStudyTest {
 	public void test_for_delete() {
 		
 	}
+	@Test
+	public void test_addMenu() {
+		
+		assertNotNull("test if there is a valid Stallmenu arraylist to add food item to", menuList);
+		C206_CaseStudy.addMenu(menuList, food1);
+		assertEquals("test if the menuList arraylist size is 1?", 1, menuList.size());
+		
+		assertSame("test if food item is added same as the first item in the arraylist?," , menuList.get(0));
+		
+		C206_CaseStudy.addMenu(menuList, food2);
+		assertEquals("Test that the arraylist menu size is 2?", 2, menuList.size());
+		assertSame("test that food item is added same as the second item of the list?", food2, menuList.get(1));
+	}
+	
+	@Test
+	public void test_getAllMenu() {
+		assertNotNull("Test if there is a menuList arraylist to add into", menuList);
+		String allMenu = C206_CaseStudy.getAllMenu(menuList);
+		String testOutput="";
+		assertEquals("Check that ViewAllMenuList", testOutput, allMenu);
+		
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		assertEquals("test if that the arraylist size of Menu is 2?", 2, menuList.size());
+		
+		allMenu = C206_CaseStudy.getAllMenu(menuList);
+		
+		testOutput = String.format("%-10d %-30s %-10.2f\n", 1, "Mee Pok", 4.00);
+		testOutput += String.format("%-10d %-30s %-10.2f\n", 2, "Beef Steak", 17.00);
+		
+		assertEquals("Check that viewAllMenuList", testOutput, allMenu);
+	}
+	@Test
+	public void test_deleteFood() {
+		assertNotNull("test if there is a valid MenuList arraylist to add food item into", menuList);
+		String allMenu = C206_CaseStudy.getAllMenu(menuList);
+		String testOutput="";
+		assertEquals("Check that viewAllmenuList", testOutput, allMenu);
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		assertEquals("test if that the size of the food item menu is 2", 2, menuList.size());
+		
+		C206_CaseStudy.deleteFood(menuList, food1.getStall_id());
+		assertEquals("Test if that Menu arraylist size is 1?", 1, menuList.size());
+		C206_CaseStudy.getAllMenu(menuList);
+		
+		testOutput = String.format("$-10d %-30s %10.2f\n", 1, "Beef Steak", 17.00);
+		
+		assertEquals("check if viewAllmenuList", testOutput, allMenu);
+		
+	}
 
 }
