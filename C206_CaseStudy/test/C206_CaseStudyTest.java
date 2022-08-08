@@ -12,10 +12,13 @@ public class C206_CaseStudyTest {
 	private Stall S2;
 	private Menu food1;
 	private Menu food2;
+	private Ingredients ingredient1;
+	private Ingredients ingredient2;
 
 
 	private ArrayList<Stall> Stalllist;
 	private ArrayList<Menu> menuList;
+	private ArrayList<Ingredients> ingredients;
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,9 +28,13 @@ public class C206_CaseStudyTest {
 		
 		food1 = new Menu(1, "Mee Pok", 4);
 		food2 = new Menu(2, "Beef Steak", 17);
+		
+		ingredient1 = new Ingredients(1,"Apple",10);
+		ingredient2 = new Ingredients(2,"Potato",15);
 
 		Stalllist = new ArrayList<Stall>();
 		menuList = new ArrayList<Menu>();
+		ingredients = new ArrayList<Ingredients>();
 
 	}
 
@@ -125,6 +132,18 @@ public class C206_CaseStudyTest {
 		
 		assertEquals("check if viewAllmenuList", testOutput, allMenu);
 		
+	}
+	@Test
+	public void test_addIngredient() {
+		assertNotNull("test if there is a valid ingredient list to add ingredient to", ingredients);
+		C206_CaseStudy.addIngredient();
+		assertEquals("test if the ingredient list size is 1", 1, ingredients.size());
+		
+		assertSame("test if ingredient added is the same as the first item in the list", ingredients.get(0));
+		
+		C206_CaseStudy.addIngredient();
+		assertEquals("Test if the ingredient list size is 2", 2, ingredients.size());
+		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
 	}
 
 }
