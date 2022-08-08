@@ -122,10 +122,16 @@ public class C206_CaseStudy {
 
 				choice=Helper.readInt("Enter option > ");
 
-				
-				}
+
+			}//jennifer 
+			else if (choice == 1) {
+
+			} // celest;
+			else if (choice == 2) {
+
 			}
-		
+		}
+
 
 		// Methods for Casestudy;
 	}
@@ -173,7 +179,7 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-	
+
 	//add new Menu (Paulo)
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
