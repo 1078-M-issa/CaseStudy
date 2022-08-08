@@ -13,6 +13,7 @@ public class C206_CaseStudy {
 		ArrayList<Stall> Stalllist = new ArrayList<Stall>();
 		ArrayList<Menu> Stallmenu = new ArrayList<Menu>();
 		ArrayList<Ingredients> ingredients = new ArrayList<Ingredients>();
+		ArrayList<ArrayList> ListofOrders = new ArrayList<ArrayList>();
 
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
 		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
@@ -30,7 +31,7 @@ public class C206_CaseStudy {
 		System.out.println("1 - Admin");
 		System.out.println("2 - Stall Ops");
 		int Role = Helper.readInt(" Welcome ");
-		
+
 		//Role: Admin
 		if (Role == 1) {
 			while (choice != 0) {
@@ -124,40 +125,47 @@ public class C206_CaseStudy {
 				choice=Helper.readInt("Enter option > ");
 
 
-			//jennifer 
-			if (choice == 1) {
+				//jennifer 
+				if (choice == 1) {
 
-			} // celest;
-			else if (choice == 2) {
-				System.out.println("\n");
-				Helper.line(80, "-");
-				System.out.println("What would you like to do? \n");
-				System.out.println("1 - Add ingredients to order list");
-				System.out.println("2 - View ingredients in order list");
-				System.out.println("3 - Remove ingredients in order list");
+					
+					//------------------------------------------------------------------------------------------------------
+				} // celest;
+				else if (choice == 2) {
+					System.out.println("\n");
+					Helper.line(80, "-");
+					System.out.println("What would you like to do? \n");
+					System.out.println("1 - Add ingredients to order list");
+					System.out.println("2 - View ingredients in order list");
+					System.out.println("3 - Remove ingredients in order list");
 
-				choice = Helper.readInt("Choose option > ");
-				if (choice==1) {
-					C206_CaseStudy.addIngredient();
-					System.out.println("Ingredient added");
-				} else if (choice==2) {
-					String output="";
-					output=String.format("%-10s %-30s %-30s\n","STORE ID", "INGREDIENT NAME", "QUANTITY");
-					for (int i = 0; i < ingredients.size(); i++) {
-						output += String.format("%-10d %-30s %-10d\n",ingredients.get(i).getStall_id(),ingredients.get(i).getIngredient_name(), ingredients.get(i).getQuantity());
-					} System.out.println(output);
-				} else if (choice==3) {
-					int ingredientId = Helper.readInt("Enter Ingredient ID > ");
-					for (int i = 0; i<ingredients.size(); i++) {
-						if(ingredients.get(i).getStall_id() == ingredientId) {
-							C206_CaseStudy.deleteIngredient(ingredients, ingredientId);
-							System.out.println("Ingredient deleted");
-						}
-					} 
-				} else {
-					System.out.println("Invalid option");
-				}
-			}
+					choice = Helper.readInt("Choose option > ");
+					//Add
+					if (choice==1) {
+						C206_CaseStudy.addIngredient();
+						System.out.println("Ingredient added");
+					//View
+					} else if (choice==2) {
+						String output="";
+						output=String.format("%-10s %-30s %-30s\n","STORE ID", "INGREDIENT NAME", "QUANTITY");
+						for (int i = 0; i < ingredients.size(); i++) {
+							if (ingredients.get(i).getStall_id()==Stallslot) {
+								output += String.format("%-10d %-30s %-10d\n",ingredients.get(i).getStall_id(),ingredients.get(i).getIngredient_name(), ingredients.get(i).getQuantity());
+							} 
+						}System.out.println(output);
+					//Delete
+					} else if (choice==3) {
+						int ingredientId = Helper.readInt("Enter Ingredient ID > ");
+						for (int i = 0; i<ingredients.size(); i++) {
+							if(ingredients.get(i).getStall_id() == ingredientId) {
+								C206_CaseStudy.deleteIngredient(ingredients, ingredientId);
+								System.out.println("Ingredient deleted");
+							}
+						} 
+					} else {
+						System.out.println("Invalid option");
+					}
+				}//-------------------------------------------------------------------------------------------------
 			}
 		}
 
