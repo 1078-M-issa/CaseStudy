@@ -12,6 +12,7 @@ public class C206_CaseStudy {
 
 		ArrayList<Stall> Stalllist = new ArrayList<Stall>();
 		ArrayList<Menu> Stallmenu = new ArrayList<Menu>();
+		ArrayList<Ingredients> ingredients = new ArrayList<Ingredients>();
 
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
 		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
@@ -19,12 +20,12 @@ public class C206_CaseStudy {
 		Stallmenu.add(new Menu(1,"Orange Juice", 1.50));
 		Stallmenu.add(new Menu(2,"Fries", 3));
 		Stallmenu.add(new Menu(2,"Lamb chop", 7.50));
-
-
-
+		ingredients.add(new Ingredients(1,"Apple",15));
+		ingredients.add(new Ingredients(1,"Orange",10));
+		ingredients.add(new Ingredients(2,"Potato",20));
+		ingredients.add(new Ingredients(2,"Lamb meat",10));
 
 		int choice = 1;
-
 
 		System.out.println("1 - Admin");
 		System.out.println("2 - Stall Ops");
@@ -65,10 +66,6 @@ public class C206_CaseStudy {
 							}
 						} System.out.println("Food item deleted");
 					}	
-
-
-
-
 
 					//admin edit stall choice
 				} else if (choice == 2) {
@@ -111,12 +108,24 @@ public class C206_CaseStudy {
 					String OpDate = Helper.readString("Enter operating date >");
 					Stalllist.add(new Stall(newid,NewName, NewCat,OpDate ));
 				}
-
 			}
 			//Celest & Jennifer Programme code 4 Stall operator
 		} else if (Role == 2) {
+			C206_CaseStudy.menu(Role,Stalllist);
+			int Stallslot = Helper.readInt("Enter stall > ");
+			if (choice!=0) {
+				System.out.println("\n");
+				C206_CaseStudy.setHeader(Stalllist.get(Stallslot - 1).getStall_name());
+				System.out.println("What would you like to do? \n");
+				System.out.println("1 - View Promotions");
+				System.out.println("2 - View Ingredient Order List\n");	
 
-		} 
+				choice=Helper.readInt("Enter option > ");
+
+				
+				}
+			}
+		
 
 		// Methods for Casestudy;
 	}
@@ -137,14 +146,18 @@ public class C206_CaseStudy {
 			System.out.println("3 - Delete Stall");
 			System.out.println("4 - Add Stall");
 
-
-
 			//Celest & Jennifer Main Menu 4 Stall operator;
 		} else if (role == 2) {
 
+			System.out.println("Hello Stall ops \nList of Stalls\n ");
 			for (int i = 0; i < AL.size(); i++) {
-				System.out.println( (i + 1) + " - " +  AL.get(i).getStall_name());
-			}	
+				System.out.println( (i + 1) + " - " +  AL.get(i).getStall_name() + " Operated since: " + AL.get(i).getDate());
+			}
+			System.out.println("\n");
+			Helper.line(80, "-");
+			System.out.println(" Enter your stall slot \n");
+
+
 
 		} else {
 
@@ -160,22 +173,7 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-	//get stall menu
-	public static void stallmenu(int role,ArrayList<Menu> AL) {
-		for (int i = 0; i < AL.size(); i++) {
-
-			if (role == 1) {
-
-
-
-			} else if (role == 2) {
-
-			} else {
-
-				System.out.println( (i + 1) + " - " +  AL.get(i).getfoodName() + " - $" + AL.get(i).getPrice());
-			}
-		}
-	}
+	
 	//add new Menu (Paulo)
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
@@ -208,6 +206,20 @@ public class C206_CaseStudy {
 	public static void deleteFood(ArrayList<Menu> Stallmenu, int foodId) {
 
 		Stallmenu.remove(foodId);
+	}
+	//View ingredient list (Celest)
+	public static String getIngredients(ArrayList<Ingredients> ingredients){
+		String output="";
+
+		for (int i = 0; i < ingredients.size(); i++) {
+			output += String.format("%-10d %-30s %-10.2f\n", ingredients.get(i).getStall_id(), ingredients.get(i).getIngredient_name(), ingredients.get(i).getQuantity());
+		}
+		return output;
+	}
+	public static void viewIngredients(ArrayList<Ingredients> ingredients) {
+		String output=String.format("%-30s %-30s %-30s\n","INGREDIENT ID", "INGREDIENT NAME", "QUANTITY");
+		output+=getIngredients(ingredients);
+		System.out.println(output);
 	}
 
 
