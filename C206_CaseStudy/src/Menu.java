@@ -15,13 +15,13 @@
  */
 public class Menu extends Stall{
 	
-	public Menu(int stall_id, String foodName, int price) {
+	public Menu(int stall_id, String foodName, double price) {
 		super(stall_id);
 		this.foodName = foodName;
 		this.price = price;
 	}
 	private String foodName;
-	private int price;
+	private double price;
 
 	
 	
@@ -34,7 +34,7 @@ public class Menu extends Stall{
 	public String getfoodName() {
 		return foodName;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
