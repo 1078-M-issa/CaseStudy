@@ -19,13 +19,13 @@ public class C206_CaseStudy {
 
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
 		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
-		Stallmenu.add(new Menu(1,"Apple Juice", 2.00));
-		Stallmenu.add(new Menu(1,"Orange Juice", 1.50));
+		Stallmenu.add(new Menu(1,"Apple Juice", 6));
+		Stallmenu.add(new Menu(1,"Orange Juice", 4));
 		Stallmenu.add(new Menu(2,"Fries", 3));
-		Stallmenu.add(new Menu(2,"Lamb chop", 7.50));
+		Stallmenu.add(new Menu(2,"Lamb chop", 7));
 		ingredients1.add(new Ingredients(1,"Apple",15));
 		ingredients1.add(new Ingredients(1,"Orange",10));
-		ingredients1.add(new Ingredients(2,"Potato",20));
+		ingredients1.add(new Ingredients(2,"Potato",13));
 		ingredients1.add(new Ingredients(2,"Lamb meat",10));
 		ListofOrders.add(ingredients1);
 		ListofOrders.add(ingredients2);
@@ -170,7 +170,7 @@ public class C206_CaseStudy {
 				              }
 				            } String Selection = Helper.readString("Enter food name to apply promotions> ");
 				            String Name =  " ";
-				            double price = 0;
+				            int price = 0;
 				            for (int o = 0; o < Stallmenu.size(); o++) {
 				              if (Stallmenu.get(o).getfoodName().equalsIgnoreCase(Selection)) {
 				                Name = Stallmenu.get(o).getfoodName();
@@ -180,7 +180,7 @@ public class C206_CaseStudy {
 				              }
 				            }
 				            
-				            double promoprice = price - 2;              
+				            int promoprice = price - 2;              
 				            Promotions newpromo = new Promotions(Stallslot, Name, price, promoprice);
 				            System.out.println("Promotion has been added");
 				            
@@ -381,10 +381,16 @@ public class C206_CaseStudy {
 	//add new Menu (Paulo)
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
-		double price = Helper.readDouble("Enter price of food item > ");
+		int price = Helper.readInt("Enter price of food item > ");
+		if (price >= 3 && price <= 10) {
+			Menu food = new Menu(1, name, price);
+			return food;
+		} else {
+			System.out.println("Invalid price");
+		}
 
-		Menu food = new Menu(1, name, price);
-		return food;
+//		Menu food = new Menu(1, name, price);
+//		return food;
 	}
 	public static void addMenu(ArrayList<Menu>Stallmenu, Menu food) {
 		Stallmenu.add(food);
@@ -393,7 +399,7 @@ public class C206_CaseStudy {
 		String output="";
 
 		for (int i = 0; i < Stallmenu.size(); i++) {
-			output += String.format("%-10d %-30s %-10.2f\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
+			output += String.format("%-10d %-30s %-10d\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
 		}
 		return output;
 	}
