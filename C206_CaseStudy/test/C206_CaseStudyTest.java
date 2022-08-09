@@ -81,6 +81,7 @@ public class C206_CaseStudyTest {
 		
 	}
 	@Test
+	//Paulo
 	public void test_addMenu() {
 		
 		assertNotNull("test if there is a valid Stallmenu arraylist to add food item to", menuList);
@@ -95,6 +96,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
+	//Paulo
 	public void test_getAllMenu() {
 		assertNotNull("Test if there is a menuList arraylist to add into", menuList);
 		String allMenu = C206_CaseStudy.getAllMenu(menuList);
@@ -114,6 +116,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that viewAllMenuList", testOutput, allMenu);
 	}
 	@Test
+	//Paulo
 	public void test_deleteFood() {
 		assertNotNull("test if there is a valid MenuList arraylist to add food item into", menuList);
 		String allMenu = C206_CaseStudy.getAllMenu(menuList);
