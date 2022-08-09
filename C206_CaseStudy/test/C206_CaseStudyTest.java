@@ -65,19 +65,43 @@ public class C206_CaseStudyTest {
 		
 		
 		
-	}
-	
+	@Test
 	public void Test_for_edit() {
+		
+		//(issa)
+		
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		//test if index 1 (post 2) has an object in stall list;
+		assertNotNull(Stalllist.get(1));
+		String name = Helper.readString("New name = ");
+		String cat = Helper.readString("New cat = ");
+		String date = Helper.readString("New date = ");
+		
+		Stalllist.get(1).setStall_name(name);
+		Stalllist.get(1).setCategory(cat);
+		Stalllist.get(1).setDate(date);
+		
+		//check if changes have been made
+		Stall test = new Stall(2, "Outback Grills", "Westerns", "25th July 2021");
+		assertNotEquals(Stalllist.get(1).getStall_name(), test.getStall_name());
+		assertNotEquals(Stalllist.get(1).getCategory(), test.getStall_name());
+		
+		
+		
+	}
+	@Test
+	public void test_for_delete() {
+		
+		Stalllist.add(S1);
 		Stalllist.add(S2);
 		//test if index 1 (post 2) has an object in stall list;
 		assertNotNull(Stalllist.get(1));
 		
-		
-		
-		
-	}
-	
-	public void test_for_delete() {
+		//test if object has been deleted
+		Stall test = new Stall(1, "The Noodle Bowl", "Noodles", "15th June 2018");
+		Stalllist.remove(0);
+		assertNotSame(Stalllist.get(0), test);
 		
 	}
 	@Test
