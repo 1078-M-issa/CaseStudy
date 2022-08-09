@@ -388,6 +388,7 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Invalid price");
 		}
+		return null;
 
 //		Menu food = new Menu(1, name, price);
 //		return food;
