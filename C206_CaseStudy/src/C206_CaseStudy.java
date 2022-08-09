@@ -84,48 +84,17 @@ public class C206_CaseStudy {
 
 					//admin edit stall choice
 				} else if (choice == 2) {
-					C206_CaseStudy.setHeader("Edit stall");
-					choice = Helper.readInt("Enter which stall to edit > ");
-					for (int i = 0; i<Stalllist.size(); i++) {
-						if ((i + 1) == choice) {
-							String NewName = Helper.readString("Enter new stall name >  ");
-							String NewCat = Helper.readString("Enter new stall Cat >  ");
-							String OpDate = Helper.readString("Enter operating date >");
-							Stalllist.get(i).setStall_name(NewName);
-							Stalllist.get(i).setCategory(NewCat);
-							Stalllist.get(i).setDate(OpDate);
-						}
-
-					}
-					Helper.line(80, "-");
-				} else if (choice == 3) {
 					C206_CaseStudy.setHeader("Delete stall");
 					choice = Helper.readInt("Enter which stall to delete > ");
-					for (int i = 0; i<Stalllist.size(); i++) {
-						if ((i + 1) == choice) {
-							Stalllist.remove(Stalllist.get(i));
-						}
-					}
+					deleteStall(Stalllist, choice);
 					Helper.line(80, "-");
-				} else if (choice == 4) {
+				} else if (choice == 3) {
 					C206_CaseStudy.setHeader("Add a new stall");
-					for (int i = 0; i < 10 ; i++) {
-						if (Stalllist.size() > i) {
-							System.out.println((i + 1) + " " + Stalllist.get(i).getStall_name()); 
-						} else {
-							System.out.println((i + 1) + " Empty Stallslot"); 
-						}
-					}
+					retrieveAllStalls(Stalllist);
 					Helper.line(80, "-");
 					int newid = Helper.readInt("Enter in stall slot > ");
-					while (newid > 10) {
-						System.out.println("Stall slot doesn't exist");
-						newid = Helper.readInt("Try again > ");
-					}
-					String NewName = Helper.readString("Enter new stall name >  ");
-					String NewCat = Helper.readString("Enter new stall Cat >  ");
-					String OpDate = Helper.readString("Enter operating date >");
-					Stalllist.add(new Stall(newid,NewName, NewCat,OpDate ));
+					newid = newStallSlotChecker(newid);
+					addStall(Stalllist, newid);
 				}
 			}
 			//Celest & Jennifer Programme code 4 Stall operator
@@ -363,6 +332,44 @@ public class C206_CaseStudy {
 
 
 		// Methods for Casestudy;
+	} //(issa)
+	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
+		String NewName = Helper.readString("Enter new stall name >  ");
+		String NewCat = Helper.readString("Enter new stall Cat >  ");
+		String OpDate = Helper.readString("Enter operating date >");
+		Stalllist.add(new Stall(newid,NewName, NewCat,OpDate ));
+		
+	} //(issa)
+	public static int newStallSlotChecker(int newid) {
+		while (newid > 10) {
+			System.out.println("Stall slot doesn't exist");
+			newid = Helper.readInt("Try again > ");
+		}
+		return newid;
+	} //(issa)
+	public static void retrieveAllStalls(ArrayList<Stall> Stalllist) {
+		boolean trigger = true;
+		for (int i = 0; i < 10 ; i++) {
+			trigger = false;
+			for (int a =0 ; a < Stalllist.size(); a++) {
+				if (Stalllist.get(a).getStall_id() == i) {
+					System.out.println((i + 1) + " " + Stalllist.get(a).getStall_name()); 
+					trigger = true;
+					break;
+					
+				} 
+			} if (trigger == false) {
+					System.out.println((i + 1) + " Empty Stallslot"); 
+				}
+			
+		}
+	}
+	public static void deleteStall(ArrayList<Stall> Stalllist, int choice) {
+		for (int i = 0; i<Stalllist.size(); i++) {
+			if ((i + 1) == choice) {
+				Stalllist.remove(Stalllist.get(i));
+			}
+		}
 	}
 	//print Mainmenu (issa)
 	public static void menu(int role,ArrayList<Stall> AL) {
@@ -376,10 +383,9 @@ public class C206_CaseStudy {
 			System.out.println("\n");
 			Helper.line(80, "-");
 			System.out.println("What would you like to do? \n");
-			System.out.println("1 - View Stall");
-			System.out.println("2 - Edit Stall");
-			System.out.println("3 - Delete Stall");
-			System.out.println("4 - Add Stall");
+			System.out.println("1 - View Stall Menu");
+			System.out.println("2 - Delete Stall");
+			System.out.println("3 - Add Stall");
 			System.out.println("0 - Exit");
 
 			//Celest & Jennifer Main Menu 4 Stall operator;

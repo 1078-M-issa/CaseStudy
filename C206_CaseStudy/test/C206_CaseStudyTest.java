@@ -26,6 +26,7 @@ public class C206_CaseStudyTest {
 		S1 = new Stall(1, "The Noodle Bowl", "Noodles", "15th June 2018");
 		S2 = new Stall(2, "Outback Grills", "Westerns", "25th July 2021");
 		
+		
 		food1 = new Menu(1, "Mee Pok", 4);
 		food2 = new Menu(2, "Beef Steak", 17);
 		
@@ -43,7 +44,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void Test_for_Stall_View() {
+	public void Test_for_Stall_Add() {
 		
 		//test for view list (issa)
 		//Test if Stall list exist; 
@@ -56,21 +57,20 @@ public class C206_CaseStudyTest {
 		// The item just added is as same as the first item of the list
 		assertSame("Test that Stall is added same as 1st item of the list?", S1, Stalllist.get(0));
 		
-		//test if boundary set to 10 or less;
-		assert(Stalllist.size() < 10);
-		
 		//test that stall details can be retrieve properly;
 		assertNotNull(Stalllist.get(0).getStall_name());
 		assertNotNull(Stalllist.get(0).getDate());
 		
-		assertNull(Stalllist.get(11));
-		
-		
-
+		//test for the system to remove/reject insertion past the 10th index
+		Stalllist.add(S2);
+	
+		int newid = Helper.readInt("Enter in stall slot > ");
+		newid = C206_CaseStudy.newStallSlotChecker(newid);
+		C206_CaseStudy.addStall(Stalllist, newid);
 	}
 
 	@Test
-	public void Test_for_edit() {
+	public void Test_for_View() {
 		
 		//(issa)
 		
@@ -104,7 +104,7 @@ public class C206_CaseStudyTest {
 		
 		//test if object has been deleted
 		Stall test = new Stall(1, "The Noodle Bowl", "Noodles", "15th June 2018");
-		Stalllist.remove(0);
+		C206_CaseStudy.deleteStall(Stalllist, 0);
 		assertNotSame(Stalllist.get(0), test);
 		
 	}
