@@ -63,11 +63,15 @@ public class C206_CaseStudyTest {
 		assertNotNull(Stalllist.get(0).getStall_name());
 		assertNotNull(Stalllist.get(0).getDate());
 		
+		assertNull(Stalllist.get(11));
+		
 		
 		
 	}
 	@Test
 	public void Test_for_edit() {
+		
+		//(issa)
 		
 		Stalllist.add(S1);
 		Stalllist.add(S2);
@@ -89,13 +93,18 @@ public class C206_CaseStudyTest {
 		
 		
 	}
-	
+	@Test
 	public void test_for_delete() {
 		
 		Stalllist.add(S1);
 		Stalllist.add(S2);
 		//test if index 1 (post 2) has an object in stall list;
 		assertNotNull(Stalllist.get(1));
+		
+		//test if object has been deleted
+		Stall test = new Stall(1, "The Noodle Bowl", "Noodles", "15th June 2018");
+		Stalllist.remove(0);
+		assertNotSame(Stalllist.get(0), test);
 		
 	}
 	@Test
