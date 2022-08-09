@@ -66,7 +66,7 @@ public class C206_CaseStudyTest {
 		assertNull(Stalllist.get(11));
 		
 		
-		
+
 	}
 	@Test
 	public void Test_for_edit() {
@@ -126,29 +126,29 @@ public class C206_CaseStudyTest {
 	//Paulo
 	public void test_getAllMenu() {
 		assertNotNull("Test if there is a menuList arraylist to add into", menuList);
-		String allMenu = C206_CaseStudy.getAllMenu(menuList);
+		String allMenus = C206_CaseStudy.getAllMenu(menuList);
 		String testOutput="";
-		assertEquals("Check that ViewAllMenuList", testOutput, allMenu);
+		assertEquals("Check that ViewAllMenuList", testOutput, allMenus);
 		
 		C206_CaseStudy.addMenu(menuList, food1);
 		C206_CaseStudy.addMenu(menuList, food2);
 		
 		assertEquals("test if that the arraylist size of Menu is 2?", 2, menuList.size());
 		
-		allMenu = C206_CaseStudy.getAllMenu(menuList);
+		allMenus = C206_CaseStudy.getAllMenu(menuList);
 		
 		testOutput = String.format("%-10d %-30s %-10.2f\n", 1, "Mee Pok", 4.00);
 		testOutput += String.format("%-10d %-30s %-10.2f\n", 2, "Beef Steak", 17.00);
 		
-		assertEquals("Check that viewAllMenuList", testOutput, allMenu);
+		assertEquals("Check that viewAllMenuList", testOutput, allMenus);
 	}
 	@Test
 	//Paulo
 	public void test_deleteFood() {
 		assertNotNull("test if there is a valid MenuList arraylist to add food item into", menuList);
-		String allMenu = C206_CaseStudy.getAllMenu(menuList);
+		String allMenus = C206_CaseStudy.getAllMenu(menuList);
 		String testOutput="";
-		assertEquals("Check that viewAllmenuList", testOutput, allMenu);
+		assertEquals("Check that viewAllmenuList", testOutput, allMenus);
 		C206_CaseStudy.addMenu(menuList, food1);
 		C206_CaseStudy.addMenu(menuList, food2);
 		
@@ -160,7 +160,7 @@ public class C206_CaseStudyTest {
 		
 		testOutput = String.format("$-10d %-30s %10.2f\n", 1, "Beef Steak", 17.00);
 		
-		assertEquals("check if viewAllmenuList", testOutput, allMenu);
+		assertEquals("check if viewAllmenuList", testOutput, allMenus);
 		
 	}
 	public void test_addIngredient() {

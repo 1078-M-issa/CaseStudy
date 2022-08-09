@@ -69,7 +69,7 @@ public class C206_CaseStudy {
 						Menu food1 = inputMenu();
 						C206_CaseStudy.addMenu(Stallmenu, food1);
 						System.out.println("Food item added");
-						
+						//System.out.println("Food item added");
 					} else if (choice == 2) {
 						C206_CaseStudy.viewAllMenu(Stallmenu);
 
