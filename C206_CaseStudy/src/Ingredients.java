@@ -17,12 +17,12 @@ public class Ingredients extends Stall{
 		return quantity;
 	}
 	
-	public void setIngredient_name() {
-		this.ingredient_name=ingredient_name;
+	public void setIngredient_name(String name) {
+		ingredient_name = name;
 	}
 	
-	public void setQuantity() {
-		this.quantity=quantity;
+	public void setQuantity(int num) {
+		quantity = num;
 	}
 
 	@Override
