@@ -411,7 +411,7 @@ public class C206_CaseStudy {
 	//add new Menu (Paulo)
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
-		int price = Helper.readInt("Enter price of food item > ");
+		double price = Helper.readDouble("Enter price of food item > ");
 		if (price >= 3 && price <= 10) {
 			Menu food = new Menu(1, name, price);
 			return food;
@@ -430,7 +430,7 @@ public class C206_CaseStudy {
 		String output="";
 
 		for (int i = 0; i < Stallmenu.size(); i++) {
-			output += String.format("%-10d %-30s %-10d\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
+			output += String.format("%-10d %-30s %-10.2f\n", Stallmenu.get(i).getStall_id(), Stallmenu.get(i).getfoodName(), Stallmenu.get(i).getPrice());
 		}
 		return output;
 	}
