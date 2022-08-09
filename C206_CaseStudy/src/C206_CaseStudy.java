@@ -69,6 +69,7 @@ public class C206_CaseStudy {
 						Menu food1 = inputMenu();
 						C206_CaseStudy.addMenu(Stallmenu, food1);
 						System.out.println("Food item added");
+						
 					} else if (choice == 2) {
 						C206_CaseStudy.viewAllMenu(Stallmenu);
 
@@ -117,6 +118,10 @@ public class C206_CaseStudy {
 					}
 					Helper.line(80, "-");
 					int newid = Helper.readInt("Enter in stall slot > ");
+					while (newid > 10) {
+						System.out.println("Stall slot doesn't exist");
+						newid = Helper.readInt("Try again > ");
+					}
 					String NewName = Helper.readString("Enter new stall name >  ");
 					String NewCat = Helper.readString("Enter new stall Cat >  ");
 					String OpDate = Helper.readString("Enter operating date >");

@@ -43,7 +43,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void Test_for_Stall_List() {
+	public void Test_for_Stall_View() {
 		
 		//test for view list (issa)
 		//Test if Stall list exist; 
@@ -66,18 +66,36 @@ public class C206_CaseStudyTest {
 		
 		
 	}
-	
+	@Test
 	public void Test_for_edit() {
+		
+		Stalllist.add(S1);
 		Stalllist.add(S2);
 		//test if index 1 (post 2) has an object in stall list;
 		assertNotNull(Stalllist.get(1));
+		String name = Helper.readString("New name = ");
+		String cat = Helper.readString("New cat = ");
+		String date = Helper.readString("New date = ");
 		
+		Stalllist.get(1).setStall_name(name);
+		Stalllist.get(1).setCategory(cat);
+		Stalllist.get(1).setDate(date);
+		
+		//check if changes have been made
+		Stall test = new Stall(2, "Outback Grills", "Westerns", "25th July 2021");
+		assertNotEquals(Stalllist.get(1).getStall_name(), test.getStall_name());
+		assertNotEquals(Stalllist.get(1).getCategory(), test.getStall_name());
 		
 		
 		
 	}
 	
 	public void test_for_delete() {
+		
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		//test if index 1 (post 2) has an object in stall list;
+		assertNotNull(Stalllist.get(1));
 		
 	}
 	@Test
@@ -87,7 +105,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addMenu(menuList, food1);
 		assertEquals("test if the menuList arraylist size is 1?", 1, menuList.size());
 		
-		assertSame("test if food item is added same as the first item in the arraylist?," , menuList.get(0));
+		assertSame("test if food item is added same as the first item in the arraylist?", food1 , menuList.get(0));
 		
 		C206_CaseStudy.addMenu(menuList, food2);
 		assertEquals("Test that the arraylist menu size is 2?", 2, menuList.size());
@@ -133,7 +151,6 @@ public class C206_CaseStudyTest {
 		assertEquals("check if viewAllmenuList", testOutput, allMenu);
 		
 	}
-	@Test
 	public void test_addIngredient() {
 		assertNotNull("test if there is a valid ingredient list to add ingredient to", ingredients);
 		C206_CaseStudy.addIngredient();
