@@ -19,13 +19,8 @@ public class C206_CaseStudy {
 
 		Stalllist.add(new Stall(1,"The Juicer","Drinks", "15th Sept 2020"));
 		Stalllist.add(new Stall(2,"Outback Grill","Western", "24th Sept 2019"));
-<<<<<<< HEAD
-		Stallmenu.add(new Menu(1,"Apple Juice", 4.00));
+		Stallmenu.add(new Menu(1,"Apple Juice", 6.00));
 		Stallmenu.add(new Menu(1,"Orange Juice", 3.50));
-=======
-		Stallmenu.add(new Menu(1,"Apple Juice", 6));
-		Stallmenu.add(new Menu(1,"Orange Juice", 4));
->>>>>>> branch 'master' of https://github.com/1078-M-issa/CaseStudy.git
 		Stallmenu.add(new Menu(2,"Fries", 3));
 		Stallmenu.add(new Menu(2,"Lamb chop", 7));
 		ingredients1.add(new Ingredients(1,"Apple",15));
@@ -166,7 +161,6 @@ public class C206_CaseStudy {
 
 						choice = Helper.readInt("Choose option > ");
 
-<<<<<<< HEAD
 						//C206_CaseStudy.addPromotion();
 						Helper.line(80, "-");
 						if (choice==1) {
@@ -223,45 +217,6 @@ public class C206_CaseStudy {
 							}
 						}
 
-=======
-				          //C206_CaseStudy.addPromotion();
-				          Helper.line(80, "-");
-				          if (choice==1) {
-				            for (int i = 0; i<Stallmenu.size(); i++) {
-				              if(Stallmenu.get(i).getStall_id() == (Stallslot )) {
-				                System.out.println(Stallmenu.get(i).getfoodName() + " - " + Stallmenu.get(i).getPrice());
-				              }
-				            } String Selection = Helper.readString("Enter food name to apply promotions> ");
-				            String Name =  " ";
-				            int price = 0;
-				            for (int o = 0; o < Stallmenu.size(); o++) {
-				              if (Stallmenu.get(o).getfoodName().equalsIgnoreCase(Selection)) {
-				                Name = Stallmenu.get(o).getfoodName();
-				                price = Stallmenu.get(o).getPrice(); 
-				                System.out.println(Name);
-				                System.out.println(price);
-				              }
-				            }
-				            
-				            int promoprice = price - 2;              
-				            Promotions newpromo = new Promotions(Stallslot, Name, price, promoprice);
-				            System.out.println("Promotion has been added");
-				            
-				            promotionList.add(newpromo);
-				            
-				            
-				            //View Promotions
-				            
-				          }else if (choice == 2) {
-				            System.out.println(promotionList);
-				            
-				            //Delete Promotions
-				            
-				          }else if (choice == 3) {
-				        		promotionList.remove(promoprice);
-				          }
-						
->>>>>>> branch 'master' of https://github.com/1078-M-issa/CaseStudy.git
 
 
 						//------------------------------------------------------------------------------------------------------
