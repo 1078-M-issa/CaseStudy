@@ -65,14 +65,14 @@ public class C206_CaseStudy {
 					choice = Helper.readInt("Choose option > ");
 					Helper.line(80, "-");
 
-					if (choice == 1) {
+					if (choice == 1) { //Paulo(add foodItem)
 						Menu food1 = inputMenu();
 						C206_CaseStudy.addMenu(Stallmenu, food1);
-						System.out.println("Food item added");
-					} else if (choice == 2) {
+						//System.out.println("Food item added");
+					} else if (choice == 2) { //Paulo(view foodItem menu)
 						C206_CaseStudy.viewAllMenu(Stallmenu);
 
-					} else if (choice == 3) {
+					} else if (choice == 3) { //Paulo(delete foodItem from menu)
 						int foodId = Helper.readInt("Enter Food id > ");
 						for (int i = 0; i<Stallmenu.size(); i++) {
 							if(Stallmenu.get(i).getStall_id() == foodId) {
@@ -407,13 +407,16 @@ public class C206_CaseStudy {
 	public static Menu inputMenu() {
 		String name = Helper.readString("Enter name of food > ");
 		double price = Helper.readDouble("Enter price of food item > ");
-		if (price >= 3 && price <= 10) {
+		if (price >= 3 && price <= 15) {
 			Menu food = new Menu(1, name, price);
+			System.out.println("Food item Added!");
 			return food;
 		} else {
-			System.out.println("Invalid price");
+			 System.out.println("Invalid price");
+			return null;
 		}
-		return null;
+		
+		
 
 //		Menu food = new Menu(1, name, price);
 //		return food;
