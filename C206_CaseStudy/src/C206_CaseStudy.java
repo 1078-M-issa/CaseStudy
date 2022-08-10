@@ -335,20 +335,8 @@ public class C206_CaseStudy {
 
 
 		// Methods for Casestudy;
-	} //Celest
-	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
-		int num = 0;
-		while (choice != 2) {
-			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
-			selected.add(Newlyadded);
-			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
-				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
-				num++;
-				choice = Helper.readInt("Choose option > ");
-			}
-		}
-		return choice;
-	}//(issa)
+	}
+//(issa)
 	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
 		String NewName = Helper.readString("Enter new stall name >  ");
 		String NewCat = Helper.readString("Enter new stall Cat >  ");
@@ -469,6 +457,19 @@ public class C206_CaseStudy {
 	public static void deleteFood(ArrayList<Menu> Stallmenu, int foodId) {
 
 		Stallmenu.remove(foodId);
+	}	 //Add ingredient to order list (Celest)
+	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
+		int num = 0;
+		while (choice != 2) {
+			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
+			selected.add(Newlyadded);
+			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
+				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
+				num++;
+				choice = Helper.readInt("Choose option > ");
+			}
+		}
+		return choice;
 	}
 	//Add ingredient into order list (Celest)
 	public static Ingredients addIngredient(int stallslot) {

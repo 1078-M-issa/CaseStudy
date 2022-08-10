@@ -160,12 +160,12 @@ public class C206_CaseStudyTest {
 	}
 	public void test_addIngredient() {
 		assertNotNull("test if there is a valid ingredient list to add ingredient to", ingredients);
-		C206_CaseStudy.addIngredient();
+		C206_CaseStudy.addIngredient(0);
 		assertEquals("test if the ingredient list size is 1", 1, ingredients.size());
 		
 		assertSame("test if ingredient added is the same as the first item in the list", ingredients.get(0));
 		
-		C206_CaseStudy.addIngredient();
+		C206_CaseStudy.addIngredient(0);
 		assertEquals("Test if the ingredient list size is 2", 2, ingredients.size());
 		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
 	}
