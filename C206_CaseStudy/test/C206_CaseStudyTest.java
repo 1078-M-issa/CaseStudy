@@ -159,7 +159,7 @@ public class C206_CaseStudyTest {
 		String actOutput = String.format("%-10d %-30s %-10.2f\n", menuList.get(0).getStall_id(), menuList.get(0).getfoodName(), menuList.get(0).getPrice());
 	    testOutput = String.format("%-10d %-30s %-10.2f\n", 1, "Mee Pok", 4.00);
 		
-		assertEquals("check if viewAllmenuList", testOutput, allMenus);
+		assertEquals("check if viewAllmenuList", testOutput, actOutput);
 		
 	}
 	public void test_addIngredient() {
