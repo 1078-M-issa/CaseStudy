@@ -142,27 +142,8 @@ public class C206_CaseStudy {
 								if(Stallmenu.get(i).getStall_id() == (Stallslot )) {
 									System.out.println(Stallmenu.get(i).getfoodName() + " - " + Stallmenu.get(i).getPrice());
 								}
-							} String Selection = Helper.readString("Enter food name to apply promotions> ");
-							String Name =  " ";
-							double price = 0;
-							if(promotionList.size() < 1) {
-								for (int o = 0; o < Stallmenu.size(); o++) {
-									if (Stallmenu.get(o).getfoodName().equalsIgnoreCase(Selection)) {
-										Name = Stallmenu.get(o).getfoodName();
-										price = Stallmenu.get(o).getPrice(); 
-										System.out.println(Name);
-										System.out.println(price);
-									}
-								}
-
-								double promoprice = price - 2;              
-								Promotions newpromo = new Promotions(Stallslot, Name, price, promoprice);
-								System.out.println("Promotion has been added");
-
-								promotionList.add(newpromo);
-							} else {
-								System.out.println("Promotion limit reach, please delete the current one");
-							}
+							} 
+							addPromotions(Stallmenu, promotionList, Stallslot);
 
 
 							//View Promotions
@@ -331,12 +312,55 @@ public class C206_CaseStudy {
 
 
 
+
 		//-----------------------------------------------------------------------------------------------------
 
 
+<<<<<<< HEAD
 		// Methods for Casestudy;
 	}
 //(issa)
+=======
+		// Methods for Casestudy;
+	}
+	public static void addPromotions(ArrayList<Menu> Stallmenu, ArrayList<Promotions> promotionList, int Stallslot) {
+		String Selection = Helper.readString("Enter food name to apply promotions> ");
+		String Name =  " ";
+		double price = 0;
+		if(promotionList.size() < 1) {
+			for (int o = 0; o < Stallmenu.size(); o++) {
+				if (Stallmenu.get(o).getfoodName().equalsIgnoreCase(Selection)) {
+					Name = Stallmenu.get(o).getfoodName();
+					price = Stallmenu.get(o).getPrice(); 
+					System.out.println(Name);
+					System.out.println(price);
+				}
+			}
+
+			double promoprice = price - 2;              
+			Promotions newpromo = new Promotions(Stallslot, Name, price, promoprice);
+			System.out.println("Promotion has been added");
+
+			promotionList.add(newpromo);
+		} else {
+			System.out.println("Promotion limit reach, please delete the current one");
+		}
+	} 
+	//Celest
+	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
+		int num = 0;
+		while (choice != 2) {
+			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
+			selected.add(Newlyadded);
+			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
+				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
+				num++;
+				choice = Helper.readInt("Choose option > ");
+			}
+		}
+		return choice;
+	}//(issa)
+>>>>>>> branch 'master' of https://github.com/1078-M-issa/CaseStudy.git
 	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
 		String NewName = Helper.readString("Enter new stall name >  ");
 		String NewCat = Helper.readString("Enter new stall Cat >  ");

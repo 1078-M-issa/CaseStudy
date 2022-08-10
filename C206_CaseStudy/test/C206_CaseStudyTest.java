@@ -14,11 +14,14 @@ public class C206_CaseStudyTest {
 	private Menu food2;
 	private Ingredients ingredient1;
 	private Ingredients ingredient2;
+	private Promotions promotion1;
+	private Promotions promotion2;
 
 
 	private ArrayList<Stall> Stalllist;
 	private ArrayList<Menu> menuList;
 	private ArrayList<Ingredients> ingredients;
+	private ArrayList<Promotions> promotionList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -36,7 +39,7 @@ public class C206_CaseStudyTest {
 		Stalllist = new ArrayList<Stall>();
 		menuList = new ArrayList<Menu>();
 		ingredients = new ArrayList<Ingredients>();
-
+		promotionList = new ArrayList<Promotions>();
 	}
 
 	@After
@@ -153,9 +156,10 @@ public class C206_CaseStudyTest {
 		assertEquals("Test if that Menu arraylist size is 1?", 1, menuList.size());
 		C206_CaseStudy.getAllMenu(menuList);
 		
-		testOutput = String.format("$-10d %-30s %10.2f\n", 1, "Beef Steak", 17.00);
+		String actOutput = String.format("%-10d %-30s %-10.2f\n", menuList.get(0).getStall_id(), menuList.get(0).getfoodName(), menuList.get(0).getPrice());
+	    testOutput = String.format("%-10d %-30s %-10.2f\n", 1, "Mee Pok", 4.00);
 		
-		assertEquals("check if viewAllmenuList", testOutput, allMenus);
+		assertEquals("check if viewAllmenuList", testOutput, actOutput);
 		
 	}
 	public void test_addIngredient() {
@@ -168,6 +172,31 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addIngredient(0);
 		assertEquals("Test if the ingredient list size is 2", 2, ingredients.size());
 		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
+	}
+	
+	@Test
+	public void test_addPromotions() {
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		assertNotNull("test if there is a valid Promotion arraylist to add promotion item to", promotionList);
+		C206_CaseStudy.addPromotions(menuList, promotionList, 0);
+		assertEquals("test if the menuList promotionlist size is 1?", 1, promotionList.size());
+		
+		promotion1 = promotionList.get(0);
+		
+		assertSame("test if daily promotion added is the same as the first item in the arraylist?", promotion1 , promotionList.get(0));
+		
+		
+	}
+	public void test_viewPromotions() {
+		
+	}
+	public void test_deletePromotions() {
+		
 	}
 
 }
