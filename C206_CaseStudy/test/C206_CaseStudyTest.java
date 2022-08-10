@@ -14,11 +14,14 @@ public class C206_CaseStudyTest {
 	private Menu food2;
 	private Ingredients ingredient1;
 	private Ingredients ingredient2;
+	private Promotions promotion1;
+	private Promotions promotion2;
 
 
 	private ArrayList<Stall> Stalllist;
 	private ArrayList<Menu> menuList;
 	private ArrayList<Ingredients> ingredients;
+	private ArrayList<Promotions> promotionList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -174,6 +177,31 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addIngredient();
 		assertEquals("Test if the ingredient list size is 2", 2, ingredients.size());
 		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
+	}
+	
+	public void test_addPromotions() {
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		assertNotNull("test if there is a valid Promotion arraylist to add promotion item to", promotionList);
+		C206_CaseStudy.addPromotions(menuList, promotionList, 0);
+		assertEquals("test if the menuList promotionlist size is 1?", 1, promotionList.size());
+		
+		assertSame("test if daily promotion added is the same as the first item in the arraylist?", promotion1 , promotionList.get(0));
+		
+		C206_CaseStudy.addPromotions(menuList, promotionList, 0);
+		assertEquals("Test that the promotionlist promotion size is 2?", 2, promotionList.size());
+		assertSame("test that daily promotion added is the same as the second item of the list?", promotion2, promotionList.get(1));
+		
+	}
+	public void test_viewPromotions() {
+		
+	}
+	public void test_deletePromotions() {
+		
 	}
 
 }
