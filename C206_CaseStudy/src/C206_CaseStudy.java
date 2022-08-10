@@ -316,11 +316,6 @@ public class C206_CaseStudy {
 		//-----------------------------------------------------------------------------------------------------
 
 
-<<<<<<< HEAD
-		// Methods for Casestudy;
-	}
-//(issa)
-=======
 		// Methods for Casestudy;
 	}
 	public static void addPromotions(ArrayList<Menu> Stallmenu, ArrayList<Promotions> promotionList, int Stallslot) {
@@ -345,22 +340,7 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Promotion limit reach, please delete the current one");
 		}
-	} 
-	//Celest
-	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
-		int num = 0;
-		while (choice != 2) {
-			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
-			selected.add(Newlyadded);
-			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
-				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
-				num++;
-				choice = Helper.readInt("Choose option > ");
-			}
-		}
-		return choice;
-	}//(issa)
->>>>>>> branch 'master' of https://github.com/1078-M-issa/CaseStudy.git
+	} //(issa)
 	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
 		String NewName = Helper.readString("Enter new stall name >  ");
 		String NewCat = Helper.readString("Enter new stall Cat >  ");
