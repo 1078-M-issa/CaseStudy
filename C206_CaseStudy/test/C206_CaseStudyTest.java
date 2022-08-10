@@ -162,14 +162,15 @@ public class C206_CaseStudyTest {
 		assertEquals("check if viewAllmenuList", testOutput, actOutput);
 		
 	}
+	@Test
 	public void test_addIngredient() {
 		assertNotNull("test if there is a valid ingredient list to add ingredient to", ingredients);
-		C206_CaseStudy.addIngredient(0);
+		C206_CaseStudy.addIngredient();
 		assertEquals("test if the ingredient list size is 1", 1, ingredients.size());
 		
 		assertSame("test if ingredient added is the same as the first item in the list", ingredients.get(0));
 		
-		C206_CaseStudy.addIngredient(0);
+		C206_CaseStudy.addIngredient();
 		assertEquals("Test if the ingredient list size is 2", 2, ingredients.size());
 		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
 	}
@@ -192,10 +193,36 @@ public class C206_CaseStudyTest {
 		
 		
 	}
+	@Test
 	public void test_viewPromotions() {
 		
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		promotion1 = new Promotions(1, "Beef Steaks", 17, 15);
+		promotionList.add(promotion1);
+		
+		C206_CaseStudy.viewPromotion(Stalllist, promotionList, 1);
+		
+		
 	}
+	@Test
 	public void test_deletePromotions() {
+		
+		Stalllist.add(S1);
+		Stalllist.add(S2);
+		
+		C206_CaseStudy.addMenu(menuList, food1);
+		C206_CaseStudy.addMenu(menuList, food2);
+		
+		promotion1 = new Promotions(1, "Beef Steaks", 17, 15);
+		promotionList.add(promotion1);
+		
+		C206_CaseStudy.deletePromotions(promotionList, 1);;
+		
 		
 	}
 

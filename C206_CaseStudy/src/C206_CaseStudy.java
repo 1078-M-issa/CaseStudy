@@ -150,22 +150,13 @@ public class C206_CaseStudy {
 
 						}else if (choice == 2) {
 
-							if ( promotionList.size() != 0) {
-								System.out.println("Promotion for " + Stalllist.get(Stallslot).getStall_name());
-								for (int a = 0 ; a < promotionList.size(); a++ ) {
-									if (promotionList.get(a).getStall_id() == promotionList.get(a).getStall_id()) {
-										System.out.println((promotionList.get(a).getfoodName() + " : " + promotionList.get(a).getPromotion_price()));
-									}
-								}
-							} else {
-								System.out.println("An empty list");
-							}
+							viewPromotion(Stalllist, promotionList, Stallslot);
 
 							//Delete Promotions
 
 						}else if (choice == 3) {
-							promotionList.remove(0);
-							if (promotionList.get(0) == null) {
+							deletePromotions(promotionList, Stallslot);
+							if (promotionList.isEmpty() == true) {
 								System.out.println("deletion successful") ;
 							} else {
 								System.out.println("deletion Fail") ;
@@ -317,6 +308,30 @@ public class C206_CaseStudy {
 
 
 		// Methods for Casestudy;
+	
+	}
+	
+	
+	//Jennifer
+
+	public static void deletePromotions(ArrayList<Promotions> promotionList, int Stallslot) {
+		for (int o = 0; o < promotionList.size(); o++) {
+			if (promotionList.get(o).getStall_id() == Stallslot);
+			promotionList.remove(o);
+		}
+	}
+	
+	public static void viewPromotion(ArrayList<Stall> Stalllist, ArrayList<Promotions> promotionList, int Stallslot) {
+		if ( promotionList.size() != 0) {
+			System.out.println("Promotion for " + Stalllist.get(Stallslot - 1).getStall_name());
+			for (int a = 0 ; a < promotionList.size(); a++ ) {
+				if (promotionList.get(a).getStall_id() == promotionList.get(a).getStall_id()) {
+					System.out.println((promotionList.get(a).getfoodName() + " : " + promotionList.get(a).getPromotion_price()));
+				}
+			}
+		} else {
+			System.out.println("An empty list");
+		}
 	}
 	public static void addPromotions(ArrayList<Menu> Stallmenu, ArrayList<Promotions> promotionList, int Stallslot) {
 		String Selection = Helper.readString("Enter food name to apply promotions> ");
@@ -340,7 +355,21 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Promotion limit reach, please delete the current one");
 		}
-	} //(issa)
+	} 
+	//Celest
+	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
+		int num = 0;
+		while (choice != 2) {
+			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
+			selected.add(Newlyadded);
+			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
+				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
+				num++;
+				choice = Helper.readInt("Choose option > ");
+			}
+		}
+		return choice;
+	}//(issa)
 	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
 		String NewName = Helper.readString("Enter new stall name >  ");
 		String NewCat = Helper.readString("Enter new stall Cat >  ");
@@ -461,19 +490,6 @@ public class C206_CaseStudy {
 	public static void deleteFood(ArrayList<Menu> Stallmenu, int foodId) {
 
 		Stallmenu.remove(foodId);
-	}	 //Add ingredient to order list (Celest)
-	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
-		int num = 0;
-		while (choice != 2) {
-			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
-			selected.add(Newlyadded);
-			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
-				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
-				num++;
-				choice = Helper.readInt("Choose option > ");
-			}
-		}
-		return choice;
 	}
 	//Add ingredient into order list (Celest)
 	public static Ingredients addIngredient(int stallslot) {
