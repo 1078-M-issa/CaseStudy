@@ -79,20 +79,14 @@ public class C206_CaseStudyTest {
 		
 		Stalllist.add(S1);
 		Stalllist.add(S2);
-		//test if index 1 (post 2) has an object in stall list;
+		//test if stallist if not empty;
 		assertNotNull(Stalllist.get(1));
-		String name = Helper.readString("New name = ");
-		String cat = Helper.readString("New cat = ");
-		String date = Helper.readString("New date = ");
+		assertNotNull(Stalllist.get(0));
 		
-		Stalllist.get(1).setStall_name(name);
-		Stalllist.get(1).setCategory(cat);
-		Stalllist.get(1).setDate(date);
 		
-		//check if changes have been made
-		Stall test = new Stall(2, "Outback Grills", "Westerns", "25th July 2021");
-		assertNotEquals(Stalllist.get(1).getStall_name(), test.getStall_name());
-		assertNotEquals(Stalllist.get(1).getCategory(), test.getStall_name());
+		C206_CaseStudy.menu(1, Stalllist);
+		
+		Helper.line(80, "-");
 		
 		
 		
@@ -179,6 +173,7 @@ public class C206_CaseStudyTest {
 		assertSame("test if ingredient added is the same as the second item of the list", ingredient2, ingredients.get(1));
 	}
 	
+	@Test
 	public void test_addPromotions() {
 		Stalllist.add(S1);
 		Stalllist.add(S2);

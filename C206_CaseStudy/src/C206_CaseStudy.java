@@ -35,7 +35,7 @@ public class C206_CaseStudy {
 		System.out.println("1 - Admin");
 		System.out.println("2 - Stall Ops");
 		Helper.line(80, "-");
-		int Role = Helper.readInt("Welcome? - ");
+		int Role = Helper.readInt("Welcome - ");
 
 		//Role: Admin
 		if (Role == 1) {
@@ -149,7 +149,7 @@ public class C206_CaseStudy {
 							//View Promotions
 
 						}else if (choice == 2) {
-							
+
 							if ( promotionList.size() != 0) {
 								System.out.println("Promotion for " + Stalllist.get(Stallslot).getStall_name());
 								for (int a = 0 ; a < promotionList.size(); a++ ) {
@@ -185,7 +185,7 @@ public class C206_CaseStudy {
 						System.out.println("1 - Add order list");
 						System.out.println("2 - View order list");
 						System.out.println("3 - Remove order list");
-						System.out.println("4 - back");
+						System.out.println("4 - Back");
 						System.out.println("0 - Exit");
 
 						Helper.line(80, "-");
@@ -202,25 +202,16 @@ public class C206_CaseStudy {
 								System.out.println("You've exceded your maximum order list of 2, edit or delete the 2 submited.");
 							}
 
-							int num = 0;
-							while (choice != 2) {
-								Ingredients Newlyadded = C206_CaseStudy.addIngredient();
-								selected.add(Newlyadded);
-								if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
-									System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes> \n 2- No \n----------");
-									num++;
-									choice = Helper.readInt("Choose option > ");
-								}
-							}
+							choice = addOrderList(choice, Stallslot, selected);
 							System.out.println("Ingredient added");
-							//View
 
+							//View
 						} else if (choice==2) {
 							boolean mark1 = false;
 							boolean mark2 = false;
 							ArrayList <Ingredients> selected = null;
 							output1=String.format("%-10s %-30s %-30s\n","ID", "INGREDIENT NAME", "QUANTITY");
-							if (ListofOrders.get(0).size() > 1) {
+							if (ListofOrders.get(0).size() >= 1) {
 								selected = ListofOrders.get(0);
 								for (int i = 0; i < selected.size(); i++) {
 									if (selected.get(i).getStall_id()==Stallslot) {
@@ -232,19 +223,20 @@ public class C206_CaseStudy {
 									Helper.line(80, "-");
 									mark1 = true;
 								}
-							} if (ListofOrders.get(0).size() > 1) {
+							} output2=String.format("%-10s %-30s %-30s\n","ID", "INGREDIENT NAME", "QUANTITY");
+							if (ListofOrders.get(1).size() >= 1) {
 								selected = ListofOrders.get(1);
 								for (int i = 0; i < selected.size(); i++) {
 									if (selected.get(i).getStall_id()==Stallslot) {
 										output2 += String.format("%-10d %-30s %-10d\n", i+1 ,selected.get(i).getIngredient_name(), selected.get(i).getQuantity());
 									} 
+								} if (output2.isBlank() == false) {
+									System.out.println("List 2 \n"+ output2);
+									Helper.line(80, "-");
+									mark2 = true;
 								}
 							}
-							if (output2.isBlank() == false) {
-								System.out.println("List 2 \n"+ output2);
-								Helper.line(80, "-");
-								mark2 = true;
-							}
+
 
 							if (mark1 == false && mark2 == false ) {
 								System.out.println("Orders list is empty");
@@ -252,9 +244,11 @@ public class C206_CaseStudy {
 
 							//Delete		
 						} else if (choice==3) {
+							boolean mark1 = false;
+							boolean mark2 = false;
 							ArrayList <Ingredients> selected = null;
 							output1=String.format("%-10s %-30s %-30s\n","ID", "INGREDIENT NAME", "QUANTITY");
-							if (ListofOrders.get(0).size() > 1) {
+							if (ListofOrders.get(0).size() >= 1) {
 								selected = ListofOrders.get(0);
 								for (int i = 0; i < selected.size(); i++) {
 									if (selected.get(i).getStall_id()==Stallslot) {
@@ -264,22 +258,26 @@ public class C206_CaseStudy {
 								if (output1.isBlank() == false) {
 									System.out.println("List 1 \n"+ output1);
 									Helper.line(80, "-");
+									mark1 = true;
 								}
-							} if (ListofOrders.get(0).size() > 1) {
+							} 
+							if (ListofOrders.get(1).size() >= 1) {
+								output2=String.format("%-10s %-30s %-30s\n","ID", "INGREDIENT NAME", "QUANTITY");
 								selected = ListofOrders.get(1);
 								for (int i = 0; i < selected.size(); i++) {
 									if (selected.get(i).getStall_id()==Stallslot) {
 										output2 += String.format("%-10d %-30s %-10d\n", i+1 ,selected.get(i).getIngredient_name(), selected.get(i).getQuantity());
 									} 
+								} if (output2.isBlank() == false) {
+									System.out.println("List 2 \n"+ output2);
+									Helper.line(80, "-");
+									mark2 = true;
 								}
 							}
-							if (output2.isBlank() == false) {
-								System.out.println("List 2 \n"+ output2);
-								Helper.line(80, "-");
-							}
 
-							if (output2.isBlank() && output1.isBlank() ) {
-								System.out.println("Order list is empty");
+
+							if (mark1 == false && mark2 == false ) {
+								System.out.println("Orders list is empty");
 							}
 							selected = null;
 							System.out.println("1- Delete a list\n2- Cancel");
@@ -287,10 +285,15 @@ public class C206_CaseStudy {
 							choice = Helper.readInt("Your Option> ");
 							if(choice == 1) {
 								choice = Helper.readInt("Which list to delete> ");
+								while (choice > ListofOrders.size()){
+									System.out.println("List doesn't exist");
+
+									choice = Helper.readInt("Try again > ");
+								}
 								selected = ListofOrders.get(choice - 1);
 
 								if(selected.removeAll(selected) == true) {
-									System.out.println("List remove succesfully.");
+									System.out.println("List removed succesfully.");
 								}
 							}
 							else {
@@ -309,7 +312,8 @@ public class C206_CaseStudy {
 
 
 
-		//-------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 
 
 		// Methods for Casestudy;
@@ -337,13 +341,26 @@ public class C206_CaseStudy {
 			System.out.println("Promotion limit reach, please delete the current one");
 		}
 	} 
-	//(issa)
+	//Celest
+	public static int addOrderList(int choice, int Stallslot, ArrayList<Ingredients> selected) {
+		int num = 0;
+		while (choice != 2) {
+			Ingredients Newlyadded = C206_CaseStudy.addIngredient(Stallslot);
+			selected.add(Newlyadded);
+			if (selected.get(num).getIngredient_name() == Newlyadded.getIngredient_name()) {
+				System.out.println("Ingredients added succesfully \n Would you like to add another to the list?\n---------- \n 1- Yes \n 2- No \n----------");
+				num++;
+				choice = Helper.readInt("Choose option > ");
+			}
+		}
+		return choice;
+	}//(issa)
 	public static void addStall(ArrayList<Stall> Stalllist, int newid) {
 		String NewName = Helper.readString("Enter new stall name >  ");
 		String NewCat = Helper.readString("Enter new stall Cat >  ");
 		String OpDate = Helper.readString("Enter operating date >");
 		Stalllist.add(new Stall(newid,NewName, NewCat,OpDate ));
-		
+
 	} //(issa)
 	public static int newStallSlotChecker(int newid) {
 		while (newid > 10) {
@@ -361,12 +378,12 @@ public class C206_CaseStudy {
 					System.out.println((i + 1) + " " + Stalllist.get(a).getStall_name()); 
 					trigger = true;
 					break;
-					
+
 				} 
 			} if (trigger == false) {
-					System.out.println((i + 1) + " Empty Stallslot"); 
-				}
-			
+				System.out.println((i + 1) + " Empty Stallslot"); 
+			}
+
 		}
 	}
 	public static void deleteStall(ArrayList<Stall> Stalllist, int choice) {
@@ -431,8 +448,8 @@ public class C206_CaseStudy {
 		}
 		return null;
 
-//		Menu food = new Menu(1, name, price);
-//		return food;
+		//		Menu food = new Menu(1, name, price);
+		//		return food;
 	}
 	public static void addMenu(ArrayList<Menu>Stallmenu, Menu food) {
 		Stallmenu.add(food);
@@ -460,10 +477,10 @@ public class C206_CaseStudy {
 		Stallmenu.remove(foodId);
 	}
 	//Add ingredient into order list (Celest)
-	public static Ingredients addIngredient() {
+	public static Ingredients addIngredient(int stallslot) {
 		String ingredient_name=Helper.readString("Enter ingredient name > ");
 		int quantity=Helper.readInt("Enter quantity > ");
-		Ingredients item=new Ingredients(1,ingredient_name,quantity);
+		Ingredients item=new Ingredients(stallslot,ingredient_name,quantity);
 		return item;
 	}
 
