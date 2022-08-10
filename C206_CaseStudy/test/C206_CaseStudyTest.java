@@ -39,7 +39,7 @@ public class C206_CaseStudyTest {
 		Stalllist = new ArrayList<Stall>();
 		menuList = new ArrayList<Menu>();
 		ingredients = new ArrayList<Ingredients>();
-
+		promotionList = new ArrayList<Promotions>();
 	}
 
 	@After
@@ -156,7 +156,8 @@ public class C206_CaseStudyTest {
 		assertEquals("Test if that Menu arraylist size is 1?", 1, menuList.size());
 		C206_CaseStudy.getAllMenu(menuList);
 		
-		testOutput = String.format("$-10d %-30s %10.2f\n", 1, "Beef Steak", 17.00);
+		String actOutput = String.format("%-10d %-30s %-10.2f\n", menuList.get(0).getStall_id(), menuList.get(0).getfoodName(), menuList.get(0).getPrice());
+	    testOutput = String.format("%-10d %-30s %-10.2f\n", 1, "Mee Pok", 4.00);
 		
 		assertEquals("check if viewAllmenuList", testOutput, allMenus);
 		
@@ -185,11 +186,10 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addPromotions(menuList, promotionList, 0);
 		assertEquals("test if the menuList promotionlist size is 1?", 1, promotionList.size());
 		
+		promotion1 = promotionList.get(0);
+		
 		assertSame("test if daily promotion added is the same as the first item in the arraylist?", promotion1 , promotionList.get(0));
 		
-		C206_CaseStudy.addPromotions(menuList, promotionList, 0);
-		assertEquals("Test that the promotionlist promotion size is 2?", 2, promotionList.size());
-		assertSame("test that daily promotion added is the same as the second item of the list?", promotion2, promotionList.get(1));
 		
 	}
 	public void test_viewPromotions() {
